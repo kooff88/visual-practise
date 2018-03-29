@@ -9,7 +9,7 @@ react(16.2.0) + webpack(4.3) + redux + react-router + antd(3.3.3)
 
 ```bash
 
- npm i 
+ npm install --registry  https://registry.npm.taobao.org 
  npm start
 ```
 
