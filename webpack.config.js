@@ -53,9 +53,12 @@ module.exports = {
     },
     devtool: 'cheap-module-source-map',
     devServer: {
-        port: 3000,
+        contentBase: path.join(__dirname, 'src'),
         historyApiFallback: true,
-        inline: true,
+        compress: true,
+        inline:true,
+        host: 'localhost',
+        port: 3000,
     },
     plugins: [
         // 基本作用就是生成html文件

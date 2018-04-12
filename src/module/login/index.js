@@ -6,6 +6,7 @@ import action from '../../action'
 
 import { Button } from 'antd'
 
+import FDF from './PDF'
 import logo from './logo.svg';
 import './index.less';
 
@@ -16,8 +17,7 @@ class Login extends Component {
     }
   }
 
-  pdf = () => {
-  }
+ 
 
   render() {
     return (
@@ -26,10 +26,8 @@ class Login extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p>
-          这里是登陆
-        </p>
-        <Button onClick={this.pdf}>点我点我</Button>  
+        <Button onClick={()=>{this.props.history.push('/pdf')}}>预览PDF</Button>  
+        
       </div>
     ); 
   }
