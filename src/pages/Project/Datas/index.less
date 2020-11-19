@@ -1,0 +1,49 @@
+.main {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .box {
+    >div {
+      position: absolute;
+      border-radius: 50%;
+      text-align: center;
+    }
+    >div:nth-child(1) {
+      line-height:200px;
+      width:200px;
+      height:200px;
+      background:#ff0a;
+    }
+    >div:nth-child(2) {
+      left:260px;
+      line-height:200px;
+      width:200px;
+      height:200px;
+      background:#f0fa;
+    }
+    >div:nth-child(3) {
+      top:260px;
+      line-height:200px;
+      width:200px;
+      height:200px;
+      background:#00fa;
+    }
+    >div:nth-child(4) {
+      top:260px;
+      left:260px;
+      line-height:200px;
+      width:200px;
+      height:200px;
+      background:#0f0a;
+    }
+  }
+
+}

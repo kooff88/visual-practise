@@ -1,0 +1,55 @@
+.main {
+  .bird {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 86px;
+    height: 60px;
+    zoom: 0.5;
+    background-repeat: no-repeat;
+    background-image: url(https://p.ssl.qhimg.com/t01f265b6b6479fffc4.png);
+    background-position: -178px -2px;
+    animation: flappy 0.5s step-end infinite;
+  }
+
+  @keyframes flappy {
+    0% {
+      background-position: -178px -2px;
+    }
+    33% {
+      background-position: -90px -2px;
+    }
+    66% {
+      background-position: -2px -2px;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 300px;
+    .block {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      background: blue;
+      flex-shrink: 0;
+      transform-origin: 50% 50%;
+    }
+    .animate {
+      animation: mymove 3s cubic-bezier(0.5, -1.5, 0.5, 2.5) forwards;
+    }
+  }
+}
+
+@keyframes mymove {
+  from {
+    left: 100px;
+  }
+  to {
+    left: 400px;
+  }
+}

@@ -1,1 +1,0 @@
-export const UPDATE_LOGIN_DATA = 'UPDATE_LOGIN_DATA';
