@@ -120,6 +120,11 @@ export default defineConfig({
                   name: 'equiangularSpiralLine',
                   component: './D3/EquiangularSpiralLine',
                 },
+                {
+                  path: '/d3/exponentialSpiralLine',
+                  name: 'exponentialSpiralLine',
+                  component: './D3/ExponentialSpiralLine',
+                },
 
                 
               ],
