@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Input,message } from 'antd'
 import D3ExponentialSpiralLine from "../components/math/D3ExponentialSpiralLine";
+// import D3ExponentialLine from "../components/math/D3ExponentialLine";
+
 import { ExponentialSpiralLineObj } from './interface'
 import styles from './index.less';
 
@@ -52,7 +54,11 @@ const ExponentialSpiralLine: React.FC<{}> = (props) => {
                         >
                             <D3ExponentialSpiralLine
                                 a={ exponentialSpiralLine.a }
-                       />
+                            />
+                            {/* <D3ExponentialLine
+                                a={exponentialSpiralLine.a }
+                            />
+                             */}
                         </Card>
                     </div>
                 </Col>
