@@ -14,8 +14,7 @@ export default {
   'menu.d3': 'D3',
   'menu.d3.demo': 'DEMO1',
   'menu.d3.archimedeanSpiralLine': '阿基米德螺线',
-
-
+  'menu.d3.equiangularSpiralLine': '等角螺线',
 
 
   'menu.webGL': 'webGL',

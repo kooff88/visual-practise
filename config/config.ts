@@ -114,6 +114,14 @@ export default defineConfig({
                   name: 'archimedeanSpiralLine',
                   component: './D3/ArchimedeanSpiralLine',
                 },
+
+                {
+                  path: '/d3/equiangularSpiralLine',
+                  name: 'equiangularSpiralLine',
+                  component: './D3/EquiangularSpiralLine',
+                },
+
+                
               ],
             },
             {
