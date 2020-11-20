@@ -13,6 +13,10 @@ export default {
 
   'menu.d3': 'D3',
   'menu.d3.demo': 'DEMO1',
+  'menu.d3.archimedeanSpiralLine': '阿基米德螺线',
+
+
+
 
   'menu.webGL': 'webGL',
   'menu.webGL.affine': '仿射变换',

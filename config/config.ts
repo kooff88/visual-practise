@@ -107,6 +107,13 @@ export default defineConfig({
                   name: 'demo',
                   component: './D3',
                 },
+
+                // d3 示例练习
+                {
+                  path: '/d3/archimedeanSpiralLine',
+                  name: 'archimedeanSpiralLine',
+                  component: './D3/ArchimedeanSpiralLine',
+                },
               ],
             },
             {
