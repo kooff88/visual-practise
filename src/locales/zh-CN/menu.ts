@@ -16,8 +16,10 @@ export default {
   'menu.d3.archimedeanSpiralLine': '阿基米德螺线',
   'menu.d3.equiangularSpiralLine': '等角螺线',
   'menu.d3.exponentialSpiralLine': '指数函数-极坐标',
+  'menu.d3.logarithmicSpiralLine': '对数函数-极坐标',
   'menu.d3.groupedBarChart': '组合柱状图',
   
+
 
   'menu.webGL': 'webGL',
   'menu.webGL.affine': '仿射变换',

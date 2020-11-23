@@ -125,6 +125,11 @@ export default defineConfig({
                   name: 'exponentialSpiralLine',
                   component: './D3/ExponentialSpiralLine',
                 },
+                {
+                  path: '/d3/logarithmicSpiralLine',
+                  name: 'logarithmicSpiralLine',
+                  component: './D3/LogarithmicSpiralLine',
+                },
 
                 {
                   path: '/d3/groupedBarChart',
