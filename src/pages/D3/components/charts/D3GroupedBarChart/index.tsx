@@ -3,9 +3,6 @@ import * as d3 from 'd3';
 // import * as d3Tip from "d3-tip"; //d3 提示语
 import d3Tip from "d3-tip"; //d3 提示语
 import styles from './index.less';
-import { chart } from 'highcharts';
-import { keys } from 'lodash';
-import zhCN from '@/locales/zh-CN';
 
 console.log('d3Tipd3Tip',d3Tip)
 const D3GroupedBarChart: React.FC<{}> = (props) => {

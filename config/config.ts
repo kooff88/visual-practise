@@ -137,6 +137,15 @@ export default defineConfig({
                   component: './D3/GroupedBarChart',
                 },
                 
+                //雷达线
+                {
+                  path: '/d3/radarLineChart',
+                  name: 'radarLineChart',
+                  component: './D3/RadarLineChart',
+                },
+
+                
+
               ],
             },
             {
