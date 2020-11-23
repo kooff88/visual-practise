@@ -126,6 +126,11 @@ export default defineConfig({
                   component: './D3/ExponentialSpiralLine',
                 },
 
+                {
+                  path: '/d3/groupedBarChart',
+                  name: 'groupedBarChart',
+                  component: './D3/GroupedBarChart',
+                },
                 
               ],
             },
