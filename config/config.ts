@@ -143,6 +143,12 @@ export default defineConfig({
                   name: 'radarLineChart',
                   component: './D3/RadarLineChart',
                 },
+                  //径向堆栈柱状图
+                {
+                  path: '/d3/radialStackedBarChart',
+                  name: 'radialStackedBarChart',
+                  component: './D3/RadialStackedBarChart',
+                },
 
                 
 

@@ -19,7 +19,7 @@ export default {
   'menu.d3.logarithmicSpiralLine': '对数函数-极坐标',
   'menu.d3.groupedBarChart': '组合柱状图',
   'menu.d3.radarLineChart': '雷达线图',
-  
+  'menu.d3.radialStackedBarChart': '径向堆栈柱状图',
   
 
   'menu.webGL': 'webGL',
