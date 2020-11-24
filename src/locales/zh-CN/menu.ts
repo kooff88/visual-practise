@@ -20,8 +20,12 @@ export default {
   'menu.d3.groupedBarChart': '组合柱状图',
   'menu.d3.radarLineChart': '雷达线图',
   'menu.d3.radialStackedBarChart': '径向堆栈柱状图',
-  
+  'menu.d3.simpleAreaChart': '简单面积图',
 
+
+
+  'menu.d3.clock': '时钟',
+  
   'menu.webGL': 'webGL',
   'menu.webGL.affine': '仿射变换',
   'menu.webGL.circle1': 'Circle1',

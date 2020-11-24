@@ -150,6 +150,19 @@ export default defineConfig({
                   component: './D3/RadialStackedBarChart',
                 },
 
+                // {
+                //   path: '/d3/simpleAreaChart',
+                //   name: 'simpleAreaChart',
+                //   component: './D3/SimpleAreaChart',
+                // },
+
+                {
+                  path: '/d3/clock',
+                  name: 'clock',
+                  component: './D3/Clock',
+                },
+                
+
                 
 
               ],
