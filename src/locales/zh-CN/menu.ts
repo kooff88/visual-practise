@@ -21,7 +21,8 @@ export default {
   'menu.d3.radarLineChart': '雷达线图',
   'menu.d3.radialStackedBarChart': '径向堆栈柱状图',
   'menu.d3.simpleAreaChart': '简单面积图',
-
+  'menu.d3.simpleBarChart': '简单柱状图',
+  
 
 
   'menu.d3.clock': '时钟',

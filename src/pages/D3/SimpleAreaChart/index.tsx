@@ -53,7 +53,7 @@ const SimpleAreaChart: React.FC<{}> = (props) => {
                 <Col className="gutter-row" md={24}>
                     <div className="gutter-box">
                         <Card title="D3 简单面积图" bordered={false}>
-                            <D3SimpleAreaChart rawData={data} />
+                            <D3SimpleAreaChart rawData={rowData} />
                         </Card>
                     </div>
                 </Col>
