@@ -180,8 +180,13 @@ export default defineConfig({
                   component: './D3/SimpleDendrogramChart',
                 },
 
+                {
+                  path: '/d3/simpleForceChart',
+                  name: 'simpleForceChart',
+                  component: './D3/SimpleForceChart',
+                },
                 
-
+                
 
 
                 {
