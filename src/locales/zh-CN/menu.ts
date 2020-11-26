@@ -23,6 +23,7 @@ export default {
   'menu.d3.simpleAreaChart': '简单面积图',
   'menu.d3.simpleBarChart': '简单柱状图',
   'menu.d3.simpleChinaMap': '简单中国地图',
+  'menu.d3.simpleChordChart': '简单弦图',
   
 
 

@@ -75,7 +75,6 @@ const D3SimpleChinaMap: React.FC<{}> = (props) => {
       .attr('stroke', '#fff')
       .attr('stroke-width', 1)
         .attr('fill', function (d, i) {
-        console.log('i',i)
         return z(i)
       })
       .attr('d', path)
@@ -83,8 +82,6 @@ const D3SimpleChinaMap: React.FC<{}> = (props) => {
         d3.select(this).attr('fill', 'yellow')
       })
       .on('mouseout', function(d, i) {
-        console.log("aa",)
-        console.log("i",i)
         d3.select(this).attr('fill', z(i.properties.childNum))
       })
   

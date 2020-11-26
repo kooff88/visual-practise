@@ -168,6 +168,12 @@ export default defineConfig({
                   component: './D3/SimpleChinaMap',
                 },
 
+                {
+                  path: '/d3/simpleChordChart',
+                  name: 'simpleChordChart',
+                  component: './D3/SimpleChordChart',
+                },
+
 
 
 
