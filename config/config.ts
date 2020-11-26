@@ -162,6 +162,13 @@ export default defineConfig({
                   component: './D3/SimpleBarChart',
                 },
 
+                {
+                  path: '/d3/simpleChinaMap',
+                  name: 'simpleChinaMap',
+                  component: './D3/SimpleChinaMap',
+                },
+
+
 
 
                 {
