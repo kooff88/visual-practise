@@ -24,7 +24,7 @@ export default {
   'menu.d3.simpleBarChart': '简单柱状图',
   'menu.d3.simpleChinaMap': '简单中国地图',
   'menu.d3.simpleChordChart': '简单弦图',
-  
+  'menu.d3.simpleDendrogramChart': '简单树状图',
 
 
   'menu.d3.clock': '时钟',

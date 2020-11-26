@@ -174,6 +174,13 @@ export default defineConfig({
                   component: './D3/SimpleChordChart',
                 },
 
+                {
+                  path: '/d3/simpleDendrogramChart',
+                  name: 'simpleDendrogramChart',
+                  component: './D3/SimpleDendrogramChart',
+                },
+
+                
 
 
 
