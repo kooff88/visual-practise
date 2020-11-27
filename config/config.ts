@@ -186,6 +186,13 @@ export default defineConfig({
                   component: './D3/SimpleForceChart',
                 },
                 
+                {
+                  path: '/d3/simpleLineChart',
+                  name: 'simpleLineChart',
+                  component: './D3/SimpleLineChart',
+                },
+                
+                
                 
 
 
