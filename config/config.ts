@@ -198,6 +198,11 @@ export default defineConfig({
                   component: './D3/SimpleLineChartII',
                 },
                 
+                {
+                  path: '/d3/pieChart',
+                  name: 'pieChart',
+                  component: './D3/PieChart',
+                },
                 
 
 

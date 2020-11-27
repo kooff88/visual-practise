@@ -28,6 +28,7 @@ export default {
   'menu.d3.simpleForceChart': '简单力导向图',
   'menu.d3.simpleLineChart': '简单线状图',
   'menu.d3.simpleLineChartII': '简单线状图II',
+  'menu.d3.pieChart': '简单饼图',
   
   
   'menu.d3.clock': '时钟',
