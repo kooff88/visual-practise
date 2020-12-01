@@ -3,11 +3,50 @@ import { Row, Col, Card, Input } from 'antd'
 import  * as d3 from "d3"
 import styles from './index.less';
 
+const athletes = [
+  {name: "Floyd Mayweather", sport: "Boxing", nation: "United States", earnings: 285},
+  {name: "Lionel Messi", sport: "Soccer", nation: "Argentina", earnings: 111},
+  {name: "Cristiano Ronaldo", sport: "Soccer", nation: "Portugal", earnings: 108},
+  {name: "Conor McGregor", sport: "MMA", nation: "Ireland", earnings: 99},
+  {name: "Neymar", sport: "Soccer", nation: "Brazil", earnings: 90},
+  {name: "LeBron James", sport: "Basketball", nation: "United States",  earnings: 85.5},
+  {name: "Roger Federer", sport: "Tennis", nation: "Switzerland", earnings: 77.2},
+  {name: "Stephen Curry", sport: "Basketball", nation: "United States", earnings: 76.9},
+  {name: "Matt Ryan", sport: "Football", nation: "United States", earnings: 67.3},
+  {name: "Matthew Stafford", sport: "Football", nation: "United States", earnings: 59.5}
+]
 
 
 const SimplePackChartII: React.FC<{}> = (props) => {
 
   
+  // 数据处理
+  const handleData = () => { 
+    // let temp = d3.group(athletes, d => d.sport);
+    // console.log('Basketball',  temp.get("Basketball"))
+
+    // let temp = d3.group(athletes, d => d.nation, d=> d.sport);
+    // console.log('mation', temp.get("United States").get("Boxing"));
+
+    // let temp = d3.rollup(athletes, v => length, d => d.sport);
+    let temp = d3.rollup(athletes, v => d3.sum(v, d => d.earnings), d => d.sport );
+
+    console.log('temp', temp)
+
+
+    // let myMap = new Map([
+    //   [101, '123123'],
+    //   [102, "231231"],
+    //   [103, "asdasd"]
+    // ])
+    // myMap.set(1000, "牛B");
+
+    // let temp = myMap.get(1000);
+
+    // console.log(temp);
+  
+  }
+
 
 
   const data = {
@@ -38,6 +77,7 @@ const SimplePackChartII: React.FC<{}> = (props) => {
 
   useEffect(() => { 
     showPic()
+    handleData()
   },[])
 
 
