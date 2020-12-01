@@ -209,7 +209,11 @@ export default defineConfig({
                   name: 'simplePackChart',
                   component: './D3/SimplePackChart',
                 },
-                
+                {
+                  path: '/d3/simplePackChartII',
+                  name: 'simplePackChartII',
+                  component: './D3/SimplePackChartII',
+                },
 
                 {
                   path: '/d3/clock',
