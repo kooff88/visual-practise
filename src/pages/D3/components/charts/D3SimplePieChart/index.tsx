@@ -15,7 +15,7 @@ const D3SimplePieChart: React.FC<{}> = (props) => {
     }, []);
 
   const drawMap = () => {
-    const container = document.getElementById("containerSPCwow")
+    const container = document.getElementById("containerSPCwow1")
     const containerWidth = container.parentElement.offsetWidth
     const margin = { top: 80, right: 60, bottom: 80, left: 60 }
 
@@ -101,7 +101,8 @@ const D3SimplePieChart: React.FC<{}> = (props) => {
         d.outerRadius = radius - 10;
         setCurrentData(tem)
       })
-      // .on("mouseover", arcTween(radius + 20, 0))
+      .on('mouseover', arcTween(radius + 20, 0))
+      .on('mouseout', arcTween(radius - 10, 150))
       .transition()
       .duration(50)
       .delay(function(d, i) {
@@ -204,11 +205,28 @@ const D3SimplePieChart: React.FC<{}> = (props) => {
     .attr('y', 0)
     .text('XX市人口年龄结构')
     
+
+    
+    function arcTween(outerRadius, delay) {
+      // 设置缓动函数
+      return function() {
+        d3.select(this)
+          .transition()
+          .delay(delay)
+          .attrTween('d', function(d) {
+            var i = d3.interpolate(d.outerRadius, outerRadius)
+            return function(t) {
+              d.outerRadius = i(t)
+              return arc(d)
+            }
+          })
+      }
+    }
   }
 
   return (
       <div className={styles.main}>
-          <svg id="containerSPCwow"/>
+          <svg id="containerSPCwow1"/>
       </div>
   );
 }

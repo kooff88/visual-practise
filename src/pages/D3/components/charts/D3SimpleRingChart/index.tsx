@@ -9,6 +9,8 @@ import { groupBy } from 'lodash/groupBy';
 const D3SimplePackChart: React.FC<{}> = (props) => {
   let { data } = props;
 
+  const [currentData, setCurrentData] = useState<unknown>({})
+
     useEffect(() => {
         drawMap()
     }, []);
@@ -16,157 +18,189 @@ const D3SimplePackChart: React.FC<{}> = (props) => {
   const drawMap = () => {
     const container = document.getElementById("containerSPC")
     const containerWidth = container.parentElement.offsetWidth
-    const margin = { top: 10, right: 10, bottom: 10, left: 10 }
+    const margin = { top: 80, right: 60, bottom: 80, left: 60 }
 
     const width = containerWidth - margin.left - margin.right
-    const height = 1500 - margin.top - margin.bottom
+    const height = 600 - margin.top - margin.bottom
 
     let chart = d3
       .select(container)
       .attr("width", width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
 
+    const radius = Math.min(width, height) / 2;
+
     let g = chart
       .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .attr(
+        "transform",
+        'translate(' +
+        (width / 2 + margin.left) +
+        ',' +
+        (margin.top + radius) +
+        ')'
+      )
+    
+    let colors = d3
+      .scaleOrdinal()
+      .range([
+        '#98abc5',
+        '#8a89a6',
+        '#7b6888',
+        '#6b486b',
+        '#a05d56',
+        '#d0743c',
+        '#ff8c00'
+      ])
+    
+    let arc = d3
+      .arc()   // 定义单个圆弧 
+      .innerRadius(radius - 150)
+      .padAngle(0.03)
+    
+    let ageLabelArc = d3
+      .arc() //定义单个圆弧里面的age文字
+      .outerRadius(radius - 60)
+      .innerRadius(radius - 60)
+    
+    let percentLabelArc = d3
+      .arc()  // 定义单个圆弧里面的percent文字
+      .outerRadius( radius - 20 )
+      .innerRadius(radius - 20)
 
-    let z = d3.scaleOrdinal(d3.schemeCategory10);
+    let populationLabelArc = d3
+      .arc() // 定义单个圆弧里面的population文字
+      .outerRadius(radius + 20)
+      .innerRadius(radius + 20)
+    
+    let pie = d3
+      .pie()  // 定义饼图
+      .sort(null)
+      .value(d => d.population)
+    
+    const sumData = d3.sum(data, d => d.population);
 
-      
-    //数据分成
-    let root = d3
-      .hierarchy(data)
-      .sum(d => d.value)
-      .sort((a, b) => b.value - a.value)
-      
-    let pack = d3
-      .pack()  // 构建打包图
-      .size([width - 2, height - 2])
-      .padding(3)
-      
-    pack(root)
-
-    let node = g
-      .selectAll("g") // 定位到所有圆的中点，画g
-      .data(root.descendants())
+    colors.domain(
+      d3
+        .map(data, d => d.age)
+        .keys()
+      ) // 颜色值域
+    
+    g.selectAll('.arc') // 画环图
+      .data(pie(data))
       .enter()
-      .append("g")
-      .attr("transform", d => `translate(${d.x}, ${d.y})`)
-      .attr("class", d => `node(${!d.children ? ' node--leaf' : d.depth ? '' : ' node--root'})`)
-      .style("cursor", "pointer")
-      .style("fill-opacity", "0.8")
-      .each(d => d.node = this)
-      // .on("mouseover", hovered(true,this))
-      // .on("mouseout",  hovered(false,this))
-
-    node
-      .append("circle") // 画圈圈
-      .attr("id", d => { 
-        return (
-          'r' +
-          Math.floor(d.r) +
-          '-x' +
-          Math.floor(d.x) +
-          '-y' +
-          Math.floor(d.y)
-        )
+      .append('path')
+      .each(d => {
+        // 储存当前起始与终点的角度、并设为相等
+        let tem = { ...d, endAngle: d.startAngle }
+        d.outerRadius = radius - 10
+        setCurrentData(tem)
       })
-      .style('fill', d => z(d.depth))
-      .attr("r", 0)
+      .on('mouseover', arcTween(radius + 50, 0))
+      .on('mouseout', arcTween(radius - 10, 150))
+      .attr('class', 'arc')
+      .attr("cursor", "pointer")
+      .style("fill", d => colors(d.data.age))
       .transition()
-      .duration(50)
-      .delay((d, i) => i * 50)
-      .attr("r", d => d.r)
-    
-    let leaf = node.filter(d => !d.children); // 筛选叶
-
-    leaf
-      .append("clipPath") // 增加这招防止文字超出圆圈
-      .attr("id", d => { 
-        return (
-          'clip-r' +
-          Math.floor(d.r) +
-          '-x' +
-          Math.floor(d.x) +
-          '-y' +
-          Math.floor(d.y)
-        )
+      .duration(750)
+      .attrTween("d", next => { 
+        let i = d3.interpolate(currentData, next);
+        setCurrentData(i(0)); // 重设当前角度
+        return t => arc(i(t));
       })
-      .append("use") // 大小引用圈圈的大小
-      .attr("xlink:href", d => { 
-        return (
-          '#r' +
-          Math.floor(d.r) +
-          '-x' +
-          Math.floor(d.x) +
-          '-y' +
-          Math.floor(d.y)
-        )
-      })
-    
-    leaf
-      .append("text") //  输出叶子文字
-      .attr("clip-path", d => { 
-        return (
-          'url(#clip-r' +
-          Math.floor(d.r) +
-          '-x' +
-          Math.floor(d.x) +
-          '-y' +
-          Math.floor(d.y) +
-          ')'
-        )
-      })
-      .selectAll("tspan")
-      .data(d => d.data.name)
-      .enter()
-      .append("tspan")
-      .attr("x", 0)
-      .attr("y", (d, i, nodes) => 13 + (i - nodes.length / 2 - 0.5) * 12)
-      .text(d => d)
-    
-    node
-      .append("title")  // 输出title,mouseover显示
-      .text(function(d) {
-        return d.data.name + '\n' + d.value + '平方千米'
-      })
-    
-    let notLeaf = node.filter(d => d.depth === 1) // 筛选一线城市
-
-    notLeaf
-      .append("text") // 输出四大城市名字d
-      .selectAll("tspan")
-      .data(d => d.data.name)
-      .enter()
-      .append("tspan")
-      .style("fill", "#fff")
-      .style("font-size", '42px')
-      .attr("x", 0)
-      .attr('y', function(d, i, nodes) {
-        return 70 + (i - nodes.length / 2 - 0.5) * 70
-      })
-      .text(function(d) {
-        return d
-      })
-
       
-    function hovered(hover,d) { 
-        console.log('d',d)
-        // 把所有老祖宗都圈线
-        return function () { 
-          d3.selectAll(
-            d.ancestors().map(d => d.node)
-          ).classed("node--hover",hover)
+    const arcs = pie(data); // 构造圆弧
+
+    let label = g.append('g')
+    arcs.forEach(function(d) {
+      // 输出age文字
+      const c = ageLabelArc.centroid(d)
+      label
+        .append('text')
+        .attr('class', 'age-text')
+        .attr('fill', '#000')
+        .attr('font-size', '12px')
+        .attr('text-anchor', 'middle')
+        .attr('x', c[0])
+        .attr('y', c[1])
+        .text(d.data.age + '岁')
+    })
+
+    arcs.forEach(function(d) {
+      // 输出percent文字
+      const c = percentLabelArc.centroid(d)
+      label
+        .append('text')
+        .attr('class', 'age-text')
+        .attr('fill', '#cddc39')
+        .attr('font-weight', '700')
+        .attr('font-size', '14px')
+        .attr('text-anchor', 'middle')
+        .attr('x', c[0])
+        .attr('y', c[1])
+        .text(((d.data.population * 100) / sumData).toFixed(1) + '%')
+    })
+
+    arcs.forEach(function(d) {
+      // 输出population文字
+      var c = populationLabelArc.centroid(d)
+      label
+        .append('text')
+        .attr('class', 'age-text')
+        .attr('fill', '#000')
+        .attr('font-size', '12px')
+        .attr('text-anchor', 'middle')
+        .attr('x', c[0])
+        .attr('y', c[1])
+        .text((d.data.population / 10000).toFixed(2) + '万人')
+    })
+
+    chart
+      .append('g') // 输出标题
+      .attr('class', 'arc--title')
+      .append('text')
+      .attr('fill', '#000')
+      .attr('font-size', '14px')
+      .attr('font-weight', '700')
+      .attr(
+        'transform',
+        'translate(' +
+          (width / 2 + margin.left) +
+          ',' +
+          (margin.top + radius) +
+          ')'
+      )
+      .attr('text-anchor', 'middle')
+      .attr('x', 0)
+      .attr('y', 0)
+      .text('XX市人口年龄结构')
+    
+
+
+      function arcTween(outerRadius, delay) {
+        // 设置缓动函数
+        return function() {
+          d3.select(this)
+            .transition()
+            .delay(delay)
+            .attrTween('d', function(d) {
+              var i = d3.interpolate(d.outerRadius, outerRadius)
+              return function(t) {
+                d.outerRadius = i(t)
+                return arc(d)
+              }
+            })
         }
       }
-      
-    }
+    
+  }
 
-    return (
-        <div className={styles.main}>
-            <svg id="containerSPC"/>
-        </div>
-    );
+  return (
+      <div className={styles.main}>
+          <svg id="containerSPC"/>
+      </div>
+  );
 }
 
 export default D3SimplePackChart;
+

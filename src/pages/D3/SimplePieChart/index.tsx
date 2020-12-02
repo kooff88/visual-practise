@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Input } from 'antd'
 import D3SimplePieChart from '../components/charts/D3SimplePieChart'
-// import D3SimpleRingChart from '../components/charts/D3SimpleRingChart'
+import D3SimpleRingChart from '../components/charts/D3SimpleRingChart'
 import styles from './index.less';
 
 
@@ -25,7 +25,7 @@ const SimplePieChart: React.FC<{}> = (props) => {
             <Col className="gutter-row" md={12}>
               <div className="gutter-box">
                 <Card title="D3 简单圆环图" bordered={false}>
-                  {/* <D3SimpleRingChart data={data} /> */}
+                  <D3SimpleRingChart data={data} />
                 </Card>
               </div>
             </Col>
