@@ -203,6 +203,11 @@ export default defineConfig({
                   name: 'pieChart',
                   component: './D3/PieChart',
                 },
+                {
+                  path: '/d3/pieChartII',
+                  name: 'pieChartII',
+                  component: './D3/PieChartII',
+                },
 
                 {
                   path: '/d3/simplePackChart',
