@@ -91,7 +91,7 @@ const D3SimplePointsChart: React.FC<{}> = (props) => {
         .style("font-size",20)
         .text('健康指数 (分)')
       
-      g.append("g") //输出点
+   let a =    g.append("g") //输出点
         .selectAll("circle")
         .attr("class", "points")
         .data(points)
@@ -107,7 +107,7 @@ const D3SimplePointsChart: React.FC<{}> = (props) => {
         .duration(750)
         .delay((d, i) => i * 10)
         .attr("r", 20)
-      
+
       chart
         .append("g")
         .attr("class", "chart--title")
@@ -119,6 +119,19 @@ const D3SimplePointsChart: React.FC<{}> = (props) => {
         .attr("x", containerWidth / 2)
         .attr("y", 20)
         .text('[模拟]激烈运动年限与健康指数之间的关系抽样检查')
+        
+
+               
+        chart.call(d3.zoom()
+          .extent([[0, 0], [width, height]])
+          .scaleExtent([1, 8])
+        .on("zoom", zoomed));
+      
+        function zoomed(obj) {
+          console.log("obj==<>", obj);
+          // g.attr("transform", d3.event.transform);
+          g.attr("transform",  obj.transform);
+        }
       
       
     }

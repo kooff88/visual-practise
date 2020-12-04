@@ -3,6 +3,7 @@ import { Row, Col, Card, Input } from 'antd'
 import * as d3 from 'd3';
 import styles from './index.less';
 import { attr } from 'highcharts';
+import { translate } from '@antv/g2/lib/util/transform';
 
 
 
@@ -10,25 +11,17 @@ import { attr } from 'highcharts';
 const PointsChart: React.FC<{}> = (props) => {
 
     const data = [
-        {name: "<5", value: 19912018},
-        {name: "5-9", value: 20501982},
-        {name: "10-14", value: 20679786},
-        {name: "15-19", value: 21354481},
-        {name: "20-24", value: 22604232},
-        {name: "25-29", value: 21698010},
-        {name: "30-34", value: 21183639},
-        {name: "35-39", value: 19855782},
-        {name: "40-44", value: 20796128},
-        {name: "45-49", value: 21370368},
-        {name: "50-54", value: 22525490},
-        {name: "55-59", value: 21001947},
-        {name: "60-64", value: 18415681},
-        {name: "65-69", value: 14547446},
-        {name: "70-74", value: 10587721},
-        {name: "75-79", value: 7730129},
-        {name: "80-84", value: 5811429},
-        {name: "≥85", value: 5938752},
+        [27.014457386807784, 168.37762136429475],
+        [29.16082876354023, 143.58126091044315],
+        [98.21117037224073, 124.62510810557518],
+        [356.100090982035, 226.25655677050543],
+        [538.4380917225908, 278.3004176524297],
+        [618.8354284034182, 285.53782613047343],
+        [756.715031306159, 278.2100856379776],
+        [873.6259567496908, 239.5916869503974]
     ]
+
+  
 
     useEffect(() => { 
         showPic()
@@ -48,59 +41,43 @@ const PointsChart: React.FC<{}> = (props) => {
             .attr("width", width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
             // .attr("viewBox",  [-width / 2, -height / 2, width, height])
-            // .attr("viewBox",  [-width / 2, -height / 2, width, height])
 
-        console.log('asdasd',height)
-        let z = d3.scaleOrdinal(d3.schemeCategory10);
-        // 制作x轴
-        const xScale = d3
-            .scaleLinear()
-            .domain([-10, 10])
-            .range([30, width])
-        const xAxis = chart
-            .append("g")
-            .attr("transform", `translate(0, ${height/2})`)
-        d3.axisBottom(xScale)(xAxis)
+        const g = chart.append("g");
 
-        //制作y轴
-        const yScale = d3
-            .scaleLinear()
-            .domain([-10, 10])
-            .range([height, 20])
-        const yAxis = chart
-            .append("g")
-            .attr("class", 'axis axis--y')
-            .attr("transform", `translate(${width/2},0)`)
-            .call( d3.axisLeft(yScale))
-            .append("text")
-            .attr("y", 10)
-            .attr('dy', '.71em')
-            .style('text-anchor', 'start')
-            .style('fill', '#000')
-            .style("font-size",20)
-            .text('健康指数 (分)')
-
+        g.selectAll(".point")
+            .data(data)
+            .join("circle")
+            .attr("cx", ([x]) => x)
+            .attr("cy", ([x, y]) => height - y)
+            .attr("fill", d => `rgb(2,11,94)`)
+            .attr("r", 3)
         
-        for (let i = -10; i < 10; i++) {
-            
-            const x, y;
+        let line = d3.line()
+            .curve(d3.curveLinear)
+            .x(d => d[0])
+            .y(d => height - d[1])
+        
+        console.log(line(data));
 
-            if (i < 0) {
-                 x = -Math.random() * (10);
-                 y = -Math.random() * 10;
-            } else { 
-                 x = Math.random() * 10;
-                 y = Math.random() * 10;
-            }
+        let lineGraph = g.append("path")
+            .datum(data)
+            .attr("stroke", "blue")
+            .attr("stroke-width", 0.5)
+            .attr("stroke", "rgb(2,11,94)")
+            .attr("fill", "none")
+            .attr("d", line(data))
+           
+        chart.call(d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([1, 8])
+            .on("zoom", zoomed));
 
-            chart
-                .append("circle")
-                .attr("r",20)
-                .attr("cx", xScale(x))
-                .attr("cy", yScale(y))
-                .attr("fill", d => z(i))
-        }
-
+        function zoomed(obj) {
+            console.log("obj==<>", obj);
+            // g.attr("transform", d3.event.transform);
+            g.attr("transform",  obj.transform);
+          }
+        
         
     }
 
