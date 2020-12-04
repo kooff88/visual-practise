@@ -55,22 +55,22 @@ const PointsChart: React.FC<{}> = (props) => {
         // 制作x轴
         const xScale = d3
             .scaleLinear()
-            .domain([0, 10])
+            .domain([-10, 10])
             .range([30, width])
         const xAxis = chart
             .append("g")
-            .attr("transform", `translate(0, ${height})`)
+            .attr("transform", `translate(0, ${height/2})`)
         d3.axisBottom(xScale)(xAxis)
 
         //制作y轴
         const yScale = d3
             .scaleLinear()
-            .domain([0, 10])
+            .domain([-10, 10])
             .range([height, 20])
         const yAxis = chart
             .append("g")
             .attr("class", 'axis axis--y')
-            .attr("transform", `translate(30,0)`)
+            .attr("transform", `translate(${width/2},0)`)
             .call( d3.axisLeft(yScale))
             .append("text")
             .attr("y", 10)
@@ -81,9 +81,17 @@ const PointsChart: React.FC<{}> = (props) => {
             .text('健康指数 (分)')
 
         
-        for (let i = 0; i < 10; i++) { 
-            const x = Math.random() * 10;
-            const y = Math.random() * 10;
+        for (let i = -10; i < 10; i++) {
+            
+            const x, y;
+
+            if (i < 0) {
+                 x = -Math.random() * (10);
+                 y = -Math.random() * 10;
+            } else { 
+                 x = Math.random() * 10;
+                 y = Math.random() * 10;
+            }
 
             chart
                 .append("circle")
