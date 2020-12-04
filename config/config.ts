@@ -226,7 +226,12 @@ export default defineConfig({
                   component: './D3/SimplePieChart',
                 },
 
-                
+                {
+                  path: '/d3/simplePointsChart',
+                  name: 'simplePointsChart',
+                  component: './D3/SimplePointsChart',
+                },
+
 
                 {
                   path: '/d3/clock',
