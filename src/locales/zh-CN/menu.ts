@@ -36,7 +36,7 @@ export default {
   'menu.d3.simplePieChart': '饼图图',
   'menu.d3.simplePointsChart': '简单点图',
   'menu.d3.pointsChart': '点图',
-  
+  'menu.d3.tagCloudChart': '云标签图',
   
   'menu.d3.clock': '时钟',
   

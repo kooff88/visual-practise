@@ -237,6 +237,11 @@ export default defineConfig({
                   component: './D3/PointsChart',
                 },
                 {
+                  path: '/d3/tagCloudChart',
+                  name: 'tagCloudChart',
+                  component: './D3/TagCloudChart',
+                },
+                {
                   path: '/d3/clock',
                   name: 'clock',
                   component: './D3/Clock',
