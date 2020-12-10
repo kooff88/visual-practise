@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Input } from 'antd'
 import * as d3 from 'd3';
 import styles from './index.less';
-import { attr } from 'highcharts';
-import { translate } from '@antv/g2/lib/util/transform';
 
 
 

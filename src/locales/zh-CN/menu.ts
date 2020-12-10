@@ -37,7 +37,7 @@ export default {
   'menu.d3.simplePointsChart': '简单点图',
   'menu.d3.pointsChart': '点图',
   'menu.d3.tagCloudChart': '云标签图',
-  
+  'menu.d3.stackedBar': '堆栈柱状图',
   'menu.d3.clock': '时钟',
   
   'menu.webGL': 'webGL',
