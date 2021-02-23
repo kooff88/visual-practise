@@ -70,7 +70,7 @@ const D3StackedBarChart: React.FC<{}> = (props) => {
       .attr("height", height - margin.top - margin.bottom)
     .append("title")
       .text(d => `${d.name}
-        ${formatPercent(d.value)}`);
+${formatPercent(d.value)}`);
       
 
     chart.append('g')

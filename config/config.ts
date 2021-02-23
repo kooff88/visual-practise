@@ -450,6 +450,11 @@ export default defineConfig({
                   name: 'd3',
                   component: './Project/D3',
                 },
+                {
+                  path: '/project/react-transition-group',
+                  name: 'transition-group',
+                  component: './Project/TransitionGroup',
+                },
               ],
             },
             // {

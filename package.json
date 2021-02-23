@@ -55,6 +55,7 @@
     "react-csv": "^2.0.3",
     "react-dom": "^16.8.6",
     "react-helmet-async": "^1.0.4",
+    "react-transition-group": "^4.4.1",
     "showdown": "^1.9.1",
     "sprite-extend-3d": "^0.14.5",
     "spritejs": "^3.7.27",

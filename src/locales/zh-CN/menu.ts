@@ -82,7 +82,8 @@ export default {
   'menu.project.dataDemo1': '数据处理demo1',
   'menu.project.d3': '数据驱动框架',
   'menu.project.earth-3d': '地球3D',
- 
+  'menu.project.transition-group': '动画库',
+  
   // 'menu.canvas.circle1': 'Circle1',
 
   'menu.more-blocks': '更多区块',
