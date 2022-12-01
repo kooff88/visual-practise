@@ -123,6 +123,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   };
   const { formatMessage } = useIntl();
 
+  console.log('this.asdpoprs', props)
+
   return (
     <ProLayout
       logo={logo}
@@ -147,8 +149,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         return first ? (
           <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
         ) : (
-          <span>{route.breadcrumbName}</span>
-        );
+            <span>{route.breadcrumbName}</span>
+          );
       }}
       // footerRender={() => defaultFooterDom}
       menuDataRender={menuDataRender}
